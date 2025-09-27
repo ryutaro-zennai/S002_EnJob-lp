@@ -1,0 +1,441 @@
+<!-- Chosen Palette: 革新・ブライト (Innovative & Bright) - #FFFFFF (Base), #FF6B6B (Main), #4DCCBD (Accent) -->
+<!-- Application Structure Plan: The SPA is structured as a conversion-focused landing page. The user flow is designed to first engage the user with a highly interactive demo of the core "swiping" feature, creating a "wow" moment. It then builds empathy by addressing common recruitment pain points, presents Enjob as the clear solution, and builds trust through a founder's message and a community-driven development roadmap (dynamic progress bar). The flow culminates in a seamless, embedded registration form to maximize conversion rate by eliminating off-site redirection. This structure prioritizes emotional engagement and trust-building over a simple feature list. -->
+<!-- Visualization & Content Choices: 1. Interactive Card Swipe (FV): Goal: Demonstrate the core product experience. Method: Custom JS with requestAnimationFrame for silky-smooth animation on HTML divs. Interaction: Drag-and-drop swipe. Justification: Provides an immediate, tangible understanding of the service's value, showcasing technical capability. 2. Dynamic Progress Bar (Roadmap): Goal: Create urgency and a sense of community. Method: HTML/CSS styled div, width updated via JS fetching a remote JSON file. Interaction: Visual feedback on community progress. Justification: Turns pre-registration into a collaborative goal. Chart.js was not used as a simple progress bar was more effective for this single-metric visualization. -->
+<!-- CONFIRMATION: NO SVG graphics used (except for the approved logo). NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enjob - 会社の『想い』で仲間と出会うIT人材採用</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Enjobは、中小企業の若手経営者向けIT人材採用プラットフォームです。給与や知名度ではなく、ビジョンや価値観への共感で、会社の”ファン”になる仲間と出会えます。大手媒体では埋もれてしまう貴社の魅力を、圧倒的コストパフォーマンスで届けます。">
+    <meta name="keywords" content="IT人材採用, 中小企業, 若手経営者, スタートアップ採用, エンジニア採用, 採用コスト削減, ビジョン採用, 価値観マッチング, 採用プラットフォーム, Enjob">
+    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
+    <link rel="canonical" href="https://[YOUR_DOMAIN_HERE]">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
+    <meta property="og:url" content="https://[YOUR_DOMAIN_HERE]">
+    <meta property="og:title" content="Enjob - 会社の『想い』で、仲間と出会う採用へ">
+    <meta property="og:description" content="大手媒体では埋もれてしまう貴社の魅力を、未来のコアメンバーへ。ビジョンに共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
+    <meta property="og:image" content="https://placehold.co/1200x630/FF6B6B/FFFFFF?text=Enjob">
+    <meta property="og:site_name" content="Enjob">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
+    <meta name="twitter:url" content="https://[YOUR_DOMAIN_HERE]">
+    <meta name="twitter:title" content="Enjob - 会社の『想い』で、仲間と出会う採用へ">
+    <meta name="twitter:description" content="ビジョンに共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/FF6B6B/FFFFFF?text=Enjob">
+
+    <!-- Google Analytics (GA4) -->
+    <!-- Google Analyticsのアカウントを作成し、発行された計測タグをここに貼り付けてください -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // ここに自分の測定ID（G-XXXXXXXXXX）を挿入してください
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- End Google Analytics -->
+    
+    <!-- AI & Schema.org For Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Enjob",
+      "serviceType": "採用プラットフォーム",
+      "description": "Enjobは、ビジョンや価値観への共感を通じて、中小企業とIT人材をつなぐ採用プラットフォームです。大手媒体では埋もれてしまう企業の魅力を伝え、圧倒的なコストパフォーマンスで最高のチーム作りを支援します。",
+      "provider": {
+        "@type": "Organization",
+        "name": "Enjob"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Japan"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "中小企業の若手経営者"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "JPY",
+        "price": "4980",
+        "category": "月額サブスクリプション"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #FFFFFF; color: #333333; }
+        .main-color { background-color: #FF6B6B; }
+        .accent-color-text { color: #4DCCBD; }
+        .base-color { background-color: #FFFFFF; }
+        .gray-bg { background-color: #F7F9FA; }
+        .card-bg { background-color: #FFFFFF; }
+        .cta-button {
+            background-image: linear-gradient(to right, #FF6B6B, #FF8E53);
+            color: white;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 14px 0 rgba(255, 107, 107, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 7px 20px 0 rgba(255, 107, 107, 0.4);
+        }
+        .faq-item .answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
+        .faq-item.open .answer { max-height: 500px; }
+        .faq-item.open .plus-icon { transform: rotate(45deg); }
+        .plus-icon { transition: transform 0.3s ease-in-out; }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: #1e1e1e;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .phone-screen {
+            background-color: #F7F9FA;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile-card-container { width: 100%; height: 100%; position: relative; }
+        .profile-card {
+            width: 90%;
+            height: 90%;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            color: #333333;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: absolute;
+            top: 5%; left: 5%;
+            cursor: grab;
+            user-select: none;
+        }
+        .profile-card .header-image { height: 150px; background: linear-gradient(to right, #4DCCBD, #FF6B6B); position: relative; flex-shrink: 0; }
+        .profile-card .profile-picture { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; border: 5px solid #FFFFFF; box-shadow: 0 5px 15px rgba(0,0,0,0.2); object-fit: cover; }
+        .profile-card .card-body { padding-top: 65px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+        .match-circle { margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; }
+        .match-circle::before { content: ''; position: absolute; width: 65px; height: 65px; background: #FFFFFF; border-radius: 50%; }
+        .match-percent { position: relative; font-size: 20px; font-weight: 700; color: #333333; }
+        .match-percent span { font-size: 12px; }
+        .swipe-stamp { position: absolute; top: 200px; left: 50%; transform: translateX(-50%) rotate(-15deg); font-size: 2.5rem; font-weight: bold; padding: 0.5rem 2rem; border-radius: 0.5rem; opacity: 0; pointer-events: none; }
+        .like-stamp { border: 5px solid #4DCCBD; color: #4DCCBD; }
+        .nope-stamp { border: 5px solid #FF6B6B; color: #FF6B6B; }
+        .effect-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+        .effect-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 80px; opacity: 0; }
+        .effect-icon.animate { animation: popOut 0.5s ease-out forwards; }
+        @keyframes popOut {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            80% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+        .section-title { font-weight: 900; }
+    </style>
+</head>
+<body class="base-color">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <a href="#" class="flex items-center space-x-2">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10Z" fill="#4DCCBD"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5Z" fill="#FF6B6B"/>
+                </svg>
+                <span class="text-2xl font-bold text-gray-800">Enjob</span>
+            </a>
+            <a href="#cta-final" class="cta-button text-sm px-6 py-2">今すぐ無料で試す</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h2 class="text-4xl md:text-5xl font-black leading-tight text-gray-800">
+                            スキルよりも「ビジョンへの共感」で選ぶ。<br>
+                            <span class="accent-color-text">会社の“ファン”になる仲間と出会う採用へ。</span>
+                        </h2>
+                        <p class="mt-6 text-lg text-gray-600">
+                            Enjobは、大手媒体では埋もれてしまう貴社の『想い』を、未来のコアメンバーへダイレクトに届けます。採用コストを事業成長への投資に変えましょう。
+                        </p>
+                        <div class="mt-10">
+                            <a href="#cta-final" class="cta-button text-lg">【3ヶ月無料】で始める</a>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex justify-center items-center">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                               <div id="profileCardContainer" class="profile-card-container"></div>
+                               <div class="effect-container" id="effectContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 gray-bg border-t border-b border-gray-200">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl section-title mb-4 text-gray-800">採用の「壁」、感じていませんか？</h3>
+                <div class="w-24 h-1 main-color mx-auto rounded-full"></div>
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="card-bg p-8 rounded-xl border border-gray-200 shadow-lg">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">事業を圧迫するコスト</h4>
+                        <p class="text-gray-600">成果が出なくても発生する高額な掲載料。優秀な人材獲得は、もはや賭けではありません。</p>
+                    </div>
+                    <div class="card-bg p-8 rounded-xl border border-gray-200 shadow-lg">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">無駄なスカウト</h4>
+                        <p class="text-gray-600">返信率1%未満のスカウトメール。あなたの貴重な時間を、未来への投資に使いましょう。</p>
+                    </div>
+                    <div class="card-bg p-8 rounded-xl border border-gray-200 shadow-lg">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">「条件」だけの消耗戦</h4>
+                        <p class="text-gray-600">既存媒体では、給与や知名度の競争に巻き込まれ、貴社だけの魅力が埋もれてしまう。本当に必要なのは、ビジョンに心を燃やす仲間のはずです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl section-title mb-4 text-gray-800">Enjobが提供する、新世代の採用体験</h3>
+                 <div class="w-24 h-1 accent-color-text mx-auto rounded-full"></div>
+                <div class="grid md:grid-cols-3 gap-8 mt-12 text-left">
+                     <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">事業を止めない、圧倒的コスト</h4>
+                        <p class="text-gray-600">なぜこの価格が実現できるのか？答えはシンプルです。私たちはIT人材採用に特化することで、莫大な広告費や営業人件費を徹底的に削減しました。その分、皆様からのご紹介が私たちの大きな力になります。本質的でないコストを削ぎ落とし、最高のプロダクトを適正価格で提供することをお約束します。</p>
+                    </div>
+                    <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">ゲームのようなUI/UX</h4>
+                        <p class="text-gray-600">1日10分、スワイプするだけ。採用活動を、楽しく、効率的なものへと変革します。</p>
+                    </div>
+                    <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">『好き』でつながる採用</h4>
+                        <p class="text-gray-600">スキル以上に、貴社のビジョンに共感し、その未来に賭けてくれる仲間と出会う。Enjobは、条件でフィルタリングされることのない、「人」と「想い」のマッチングを創出します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-20">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h3 class="text-3xl section-title mb-4 text-gray-800">開発者の想い</h3>
+                <div class="w-24 h-1 accent-color-text mx-auto rounded-full"></div>
+                <div class="mt-12 text-center">
+                     <p class="text-gray-600 leading-relaxed">
+                        Enjobは、<a href="https://x.com/Ryutaro_zennai" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline font-bold">株式会社ZennAI</a> が開発しています。<br>
+                        代表者自身、創業間もないスタートアップとしての採用に苦労している経験から、「給与や知名度だけでは測れない会社の魅力を、どうすれば候補者に届けられるだろうか」と悩み続けてきました。<br><br>
+                        Enjobは、そんな原体験から生まれたサービスです。会社のビジョンに共感する仲間と出会い、共に未来を創る。このプロダクトで、すべての中小企業に最高の採用体験を届けることを約束します。開発の進捗はXでリアルタイムに発信しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 gray-bg border-t border-b border-gray-200">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h3 class="text-3xl section-title mb-4 text-gray-800">未来の採用を、共に創る</h3>
+                <div class="w-24 h-1 accent-color-text mx-auto rounded-full"></div>
+                <p class="mt-6 text-gray-600 leading-relaxed">Enjobは、皆様の声で進化するサービスです。<br>先行登録が<strong class="text-orange-500 font-bold">100社</strong>を突破した瞬間に、本開発がスタートします。<br>この革命の、最初の目撃者になってください。</p>
+                <div class="mt-8">
+                    <div class="bg-white rounded-full h-6 w-full max-w-lg mx-auto overflow-hidden border border-gray-200 shadow-inner">
+                        <div id="progress-bar" class="bg-gradient-to-r from-teal-400 to-blue-500 h-6 rounded-full transition-all duration-1000 ease-out flex items-center justify-center text-white text-sm font-bold" style="width: 0%;">0%</div>
+                    </div>
+                    <p class="mt-3 text-lg font-bold text-gray-700">目標まであと <span id="remaining-registrations">100</span> 社！</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h3 class="text-3xl section-title mb-10 text-center text-gray-800">FAQ</h3>
+                <div class="space-y-4">
+                    <div class="faq-item border-b border-gray-200 pb-4"><div class="question cursor-pointer flex justify-between items-center"><h4 class="text-lg font-semibold text-gray-800">本当に無料で始められる？</h4><div class="plus-icon text-2xl text-gray-500">+</div></div><p class="answer pt-4 text-gray-600">はい。候補者の検索やマッチングまでは完全無料です。マッチングした候補者とメッセージを開始する際に、月額のサブスクリプションにご登録いただきます。機能に応じて月額4,980円、5,980円、6,980円のプランをご用意する予定です。詳細は先行登録いただいた方へご案内します。もちろん、先行登録特典の3ヶ月間は最上位プランを含め、すべて無料でご利用いただけます。</p></div>
+                    <div class="faq-item border-b border-gray-200 pb-4"><div class="question cursor-pointer flex justify-between items-center"><h4 class="text-lg font-semibold text-gray-800">どんな人材がいる？</h4><div class="plus-icon text-2xl text-gray-500">+</div></div><p class="answer pt-4 text-gray-600">自社サービスの開発経験が豊富なWebエンジニアや、グロースハックの知見を持つWebマーケターなど、スタートアップの成長に不可欠なハイスキル人材が中心です。</p></div>
+                    <div class="faq-item border-b border-gray-200 pb-4"><div class="question cursor-pointer flex justify-between items-center"><h4 class="text-lg font-semibold text-gray-800">なぜスワイプ形式？</h4><div class="plus-icon text-2xl text-gray-500">+</div></div><p class="answer pt-4 text-gray-600">履歴書や職務経歴書だけでは決してわからない、候補者の「熱意」や「価値観」といった定性的な魅力を、直感的に判断するためです。最高のチームは、共感から生まれると信じています。</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta-final" class="py-20 main-color">
+            <div class="container mx-auto px-6 text-center text-white">
+                <h3 class="text-3xl section-title mb-4">さあ、最高のチームを創ろう。</h3>
+                <div class="mt-8 mb-10 inline-block bg-white/20 p-6 rounded-xl border border-white/50"><h4 class="text-xl font-bold">【先行登録 限定特典】</h4><p class="mt-2"><span class="font-bold text-yellow-300">最初の3ヶ月間、完全無料</span>で全機能を開放</p></div>
+                <div class="mt-12 max-w-2xl mx-auto bg-white rounded-xl shadow-2xl p-4 md:p-8"><p class="text-gray-700 font-bold text-lg mb-4">いますぐ下記フォームから、未来への第一歩を。</p><div class="aspect-w-16 aspect-h-9"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqrVrI9wg7SSj8FQ2-zyvFkwucdEr9LetUea3dERxwoRUbeg/viewform?embedded=true" width="100%" height="550" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe></div></div>
+                 <p class="mt-6 text-sm opacity-80">※ 無理な営業は一切行いません。ご安心ください。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-8"><div class="container mx-auto px-6 text-center"><p>&copy; 2025 Enjob. All rights reserved.</p></div></footer>
+
+    <script>
+        document.querySelectorAll('.faq-item .question').forEach(item => {item.addEventListener('click', () => item.parentElement.classList.toggle('open'));});
+        document.querySelectorAll('a[href="#cta-final"]').forEach(b => b.addEventListener('click', () => gtag('event','pre_registration_scroll')));
+        
+        const allCandidates = [
+            { name: 'K. Sato', title: 'Frontend Engineer', imageUrl: './img/frontend_enginner.png', matchPercent: 85, salary: '650万円', values: ['ユーザー中心設計', '自律的に動く'], skills: ['Vue.js', 'TypeScript', 'Figma']},
+            { name: 'M. Suzuki', title: 'UI/UX Designer', imageUrl: './img/uixu_designer.png', matchPercent: 92, salary: '700万円', values: ['チームで成果を出す', '新しい技術が好き'], skills: ['Figma', 'Adobe XD', 'Prototyping']},
+            { name: 'T. Ito', title: 'Backend Engineer', imageUrl: './img/backend_enginner.png', matchPercent: 78, salary: '800万円', values: ['裁量権が大きい', '技術的負債の解消'], skills: ['Go', 'Python', 'GCP']}
+        ];
+        let candidates = [...allCandidates]; 
+        const container = document.getElementById('profileCardContainer');
+        const effectContainer = document.getElementById('effectContainer');
+        
+        let activeCard = null, startPoint = {}, currentPoint = {}, isDragging = false;
+        
+        function createCard(c, i) {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            card.style.zIndex = allCandidates.length - i;
+            card.style.transform = `translateY(${i * -5}px) scale(${1 - i * 0.05})`;
+            card.innerHTML = `<div class="swipe-stamp like-stamp">LIKE</div><div class="swipe-stamp nope-stamp">NOPE</div><div class="header-image"><img src="${c.imageUrl}" alt="${c.name}のプロフィール写真" class="profile-picture"></div><div class="card-body"><h3 class="text-xl font-bold">${c.name}</h3><p class="text-sm text-gray-500 mb-2">${c.title}</p><p class="text-sm font-bold text-gray-600 mb-3">希望年収: ${c.salary}</p><div class="match-circle" style="background: conic-gradient(#4DCCBD ${c.matchPercent}%, #E0E0E0 ${c.matchPercent}%);"><div class="match-percent">${c.matchPercent}<span>%</span></div></div><p class="text-xs text-gray-500 mt-1 font-bold">価値観のマッチ度</p><div class="mt-3 px-4 pb-20 w-full flex-grow overflow-y-auto"><div class="text-xs text-left w-full grid grid-cols-2 gap-4"><div><p class="font-bold text-gray-500 mb-1"># 価値観</p><div class="flex flex-wrap gap-1">${c.values.map(v => `<span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full font-medium text-[10px] leading-tight">${v}</span>`).join('')}</div></div><div><p class="font-bold text-gray-500 mb-1"># スキル</p><div class="flex flex-wrap gap-1">${c.skills.map(s => `<span class="bg-sky-100 text-sky-800 px-2 py-1 rounded-full font-medium text-[10px] leading-tight">${s}</span>`).join('')}</div></div></div></div></div>`;
+            if (i === 0) { card.addEventListener('mousedown', onDragStart); card.addEventListener('touchstart', onDragStart, { passive: true }); }
+            return card;
+        }
+
+        function renderCards() {
+            container.innerHTML = '';
+            candidates.forEach((c, i) => container.appendChild(createCard(c, i)));
+            activeCard = container.querySelector('.profile-card');
+        }
+
+        function onDragStart(e) {
+            isDragging = true;
+            startPoint = { x: e.pageX || e.touches[0].pageX, y: e.pageY || e.touches[0].pageY };
+            document.addEventListener('mousemove', onDragMove); document.addEventListener('touchmove', onDragMove, { passive: true });
+            document.addEventListener('mouseup', onDragEnd); document.addEventListener('touchend', onDragEnd);
+            requestAnimationFrame(updateCardPosition);
+        }
+
+        function onDragMove(e) {
+            if (!isDragging) return;
+            currentPoint = { x: e.pageX || e.touches[0].pageX, y: e.pageY || e.touches[0].pageY };
+        }
+        
+        function updateCardPosition() {
+            if (!isDragging || !activeCard) return;
+            const diffX = currentPoint.x ? currentPoint.x - startPoint.x : 0;
+            const rotate = diffX * 0.1;
+            activeCard.style.transform = `translateX(${diffX}px) rotate(${rotate}deg)`;
+            const opacity = Math.min(Math.abs(diffX) / 100, 1);
+            activeCard.querySelector(diffX > 0 ? '.like-stamp' : '.nope-stamp').style.opacity = opacity;
+            activeCard.querySelector(diffX <= 0 ? '.like-stamp' : '.nope-stamp').style.opacity = 0;
+            requestAnimationFrame(updateCardPosition);
+        }
+
+        function onDragEnd(e) {
+            isDragging = false;
+            document.removeEventListener('mousemove', onDragMove); document.removeEventListener('touchmove', onDragMove);
+            document.removeEventListener('mouseup', onDragEnd); document.removeEventListener('touchend', onDragEnd);
+            
+            const diffX = currentPoint.x ? currentPoint.x - startPoint.x : 0;
+            if (Math.abs(diffX) > 100) {
+                const direction = diffX > 0 ? 1 : -1;
+                activeCard.style.transition = 'transform 0.5s ease-out';
+                activeCard.style.transform = `translateX(${direction * 500}px) rotate(${direction * 30}deg)`;
+                triggerEffect(direction === 1 ? 'like' : 'nope');
+                setTimeout(() => {
+                    candidates.shift();
+                    if (candidates.length === 0) candidates = [...allCandidates];
+                    renderCards();
+                    if (direction === 1) document.querySelector('#cta-final').scrollIntoView();
+                }, 200);
+            } else {
+                activeCard.style.transition = 'transform 0.3s ease-out';
+                activeCard.style.transform = '';
+                activeCard.querySelector('.like-stamp').style.opacity = 0;
+                activeCard.querySelector('.nope-stamp').style.opacity = 0;
+            }
+            startPoint = {}; currentPoint = {};
+        }
+
+        function triggerEffect(type) {
+            const icon = document.createElement('div');
+            icon.className = 'effect-icon';
+            icon.innerHTML = type === 'like' ? '❤️' : '❌';
+            effectContainer.appendChild(icon);
+            icon.classList.add('animate');
+            setTimeout(() => icon.remove(), 500);
+        }
+        
+        async function updateProgress() {
+            // This is a placeholder for demo purposes.
+            // In production, you would use the commented-out fetch logic below.
+            // const target = 100;
+            // const current = 35; // Example number of registrations
+            // const percent = Math.min(Math.round((current / target) * 100), 100);
+            // const remaining = Math.max(target - current, 0);
+
+            // const progressBar = document.getElementById('progress-bar');
+            // const remainingSpan = document.getElementById('remaining-registrations');
+
+            // progressBar.style.width = percent + '%';
+            // progressBar.textContent = percent + '%';
+            // remainingSpan.textContent = remaining;
+
+            
+            // --- PRODUCTION CODE ---
+            // This code fetches progress data from a JSON file.
+            // Make sure 'progress.json' is in the root of your S3 bucket
+            // and that the bucket has the correct CORS configuration.
+            const target = 100;
+            try {
+                const response = await fetch('./progress.json?v=' + new Date().getTime());
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                const current = data.registrations || 0;
+                const percent = Math.min(Math.round((current / target) * 100), 100);
+                const remaining = Math.max(target - current, 0);
+
+                const progressBar = document.getElementById('progress-bar');
+                const remainingSpan = document.getElementById('remaining-registrations');
+
+                progressBar.style.width = percent + '%';
+                progressBar.textContent = percent + '%';
+                remainingSpan.textContent = remaining;
+            } catch (error) {
+                console.error('進捗データの取得に失敗しました:', error);
+            }
+            
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
+
+
