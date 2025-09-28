@@ -7,42 +7,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enjob - 会社の『想い』で仲間と出会うIT人材採用</title>
+    <title>Enjob - 価値観でつながるIT人材採用</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Enjobは、中小企業の若手経営者向けIT人材採用プラットフォームです。給与や知名度ではなく、ビジョンや価値観への共感で、会社の”ファン”になる仲間と出会えます。大手媒体では埋もれてしまう貴社の魅力を、圧倒的コストパフォーマンスで届けます。">
+    <meta name="description" content="Enjobは、中小企業の若手経営者向けIT人材採用プラットフォームです。給与や知名度ではなく、価値観への共感で、会社の”ファン”になる仲間と出会えます。大手媒体では埋もれてしまう貴社の魅力を、圧倒的コストパフォーマンスで届けます。">
     <meta name="keywords" content="IT人材採用, 中小企業, 若手経営者, スタートアップ採用, エンジニア採用, 採用コスト削減, ビジョン採用, 価値観マッチング, 採用プラットフォーム, Enjob">
-    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
-    <link rel="canonical" href="https://[YOUR_DOMAIN_HERE]">
+    <link rel="canonical" href="https://enjob.jp/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
-    <meta property="og:url" content="https://[YOUR_DOMAIN_HERE]">
+    <meta property="og:url" content="https://enjob.jp/">
     <meta property="og:title" content="Enjob - 会社の『想い』で、仲間と出会う採用へ">
-    <meta property="og:description" content="大手媒体では埋もれてしまう貴社の魅力を、未来のコアメンバーへ。ビジョンに共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
+    <meta property="og:description" content="大手媒体では埋もれてしまう貴社の魅力を、未来のコアメンバーへ。価値観に共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
     <meta property="og:image" content="https://placehold.co/1200x630/FF6B6B/FFFFFF?text=Enjob">
     <meta property="og:site_name" content="Enjob">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <!-- ToDo: Replace [YOUR_DOMAIN_HERE] with your actual domain -->
-    <meta name="twitter:url" content="https://[YOUR_DOMAIN_HERE]">
+    <meta name="twitter:url" content="https://enjob.jp/">
     <meta name="twitter:title" content="Enjob - 会社の『想い』で、仲間と出会う採用へ">
-    <meta name="twitter:description" content="ビジョンに共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
+    <meta name="twitter:description" content="価値観に共感する即戦力IT人材と、コストをかけずに出会える新しい採用プラットフォーム。">
     <meta name="twitter:image" content="https://placehold.co/1200x630/FF6B6B/FFFFFF?text=Enjob">
 
-    <!-- Google Analytics (GA4) -->
-    <!-- Google Analyticsのアカウントを作成し、発行された計測タグをここに貼り付けてください -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // ここに自分の測定ID（G-XXXXXXXXXX）を挿入してください
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    <!-- End Google Analytics -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9XHD69W');</script>
+    <!-- End Google Tag Manager -->
     
     <!-- AI & Schema.org For Search Engines -->
     <script type="application/ld+json">
@@ -51,10 +44,10 @@
       "@type": "Service",
       "name": "Enjob",
       "serviceType": "採用プラットフォーム",
-      "description": "Enjobは、ビジョンや価値観への共感を通じて、中小企業とIT人材をつなぐ採用プラットフォームです。大手媒体では埋もれてしまう企業の魅力を伝え、圧倒的なコストパフォーマンスで最高のチーム作りを支援します。",
+      "description": "Enjobは、価値観への共感を通じて、中小企業とIT人材をつなぐ採用プラットフォームです。大手媒体では埋もれてしまう企業の魅力を伝え、圧倒的なコストパフォーマンスで最高のチーム作りを支援します。",
       "provider": {
         "@type": "Organization",
-        "name": "Enjob"
+        "name": "株式会社ZennAI"
       },
       "areaServed": {
         "@type": "Country",
@@ -112,7 +105,14 @@
             padding: 12px;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.5);
             position: relative;
+            transform: scale(0.9);
         }
+        @media (min-width: 768px) {
+            .phone-mockup {
+                transform: scale(1);
+            }
+        }
+
         .phone-screen {
             background-color: #F7F9FA;
             width: 100%;
@@ -164,6 +164,10 @@
     </style>
 </head>
 <body class="base-color">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9XHD69W"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -179,12 +183,12 @@
     </header>
 
     <main>
-        <section class="py-20 md:py-32">
+        <section class="py-16 md:py-24">
             <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-left">
-                        <h2 class="text-4xl md:text-5xl font-black leading-tight text-gray-800">
-                            スキルよりも「ビジョンへの共感」で選ぶ。<br>
+                <div class="flex flex-col md:grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left w-full">
+                        <h2 class="text-3xl md:text-5xl font-black leading-tight text-gray-800">
+                            スキルよりも「価値観への共感」で選ぶ。<br>
                             <span class="accent-color-text">会社の“ファン”になる仲間と出会う採用へ。</span>
                         </h2>
                         <p class="mt-6 text-lg text-gray-600">
@@ -194,7 +198,7 @@
                             <a href="#cta-final" class="cta-button text-lg">【3ヶ月無料】で始める</a>
                         </div>
                     </div>
-                    <div class="hidden md:flex justify-center items-center">
+                    <div class="mt-12 md:mt-0 flex justify-center items-center">
                         <div class="phone-mockup">
                             <div class="phone-screen">
                                <div id="profileCardContainer" class="profile-card-container"></div>
@@ -221,7 +225,7 @@
                     </div>
                     <div class="card-bg p-8 rounded-xl border border-gray-200 shadow-lg">
                         <h4 class="text-xl font-bold mb-2 text-gray-800">「条件」だけの消耗戦</h4>
-                        <p class="text-gray-600">既存媒体では、給与や知名度の競争に巻き込まれ、貴社だけの魅力が埋もれてしまう。本当に必要なのは、ビジョンに心を燃やす仲間のはずです。</p>
+                        <p class="text-gray-600">既存媒体では、給与や知名度の競争に巻き込まれ、貴社だけの魅力が埋もれてしまう。本当に必要なのは、価値観に共感し、共に走れる仲間のはずです。</p>
                     </div>
                 </div>
             </div>
@@ -233,7 +237,7 @@
                  <div class="w-24 h-1 accent-color-text mx-auto rounded-full"></div>
                 <div class="grid md:grid-cols-3 gap-8 mt-12 text-left">
                      <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
-                        <h4 class="text-xl font-bold mb-2 text-gray-800">事業を止めない、圧倒的コスト</h4>
+                        <h4 class="text-xl font-bold mb-2 text-gray-800">IT採用に最適化されたコスト</h4>
                         <p class="text-gray-600">なぜこの価格が実現できるのか？答えはシンプルです。私たちはIT人材採用に特化することで、莫大な広告費や営業人件費を徹底的に削減しました。その分、皆様からのご紹介が私たちの大きな力になります。本質的でないコストを削ぎ落とし、最高のプロダクトを適正価格で提供することをお約束します。</p>
                     </div>
                     <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
@@ -242,7 +246,7 @@
                     </div>
                     <div class="card-bg border border-gray-200 p-8 rounded-xl shadow-md">
                         <h4 class="text-xl font-bold mb-2 text-gray-800">『好き』でつながる採用</h4>
-                        <p class="text-gray-600">スキル以上に、貴社のビジョンに共感し、その未来に賭けてくれる仲間と出会う。Enjobは、条件でフィルタリングされることのない、「人」と「想い」のマッチングを創出します。</p>
+                        <p class="text-gray-600">スキル以上に、貴社の価値観に共感し、その未来に賭けてくれる仲間と出会う。Enjobは、条件でフィルタリングされることのない、「人」と「想い」のマッチングを創出します。</p>
                     </div>
                 </div>
             </div>
@@ -255,8 +259,8 @@
                 <div class="mt-12 text-center">
                      <p class="text-gray-600 leading-relaxed">
                         Enjobは、<a href="https://x.com/Ryutaro_zennai" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline font-bold">株式会社ZennAI</a> が開発しています。<br>
-                        代表者自身、創業間もないスタートアップとしての採用に苦労している経験から、「給与や知名度だけでは測れない会社の魅力を、どうすれば候補者に届けられるだろうか」と悩み続けてきました。<br><br>
-                        Enjobは、そんな原体験から生まれたサービスです。会社のビジョンに共感する仲間と出会い、共に未来を創る。このプロダクトで、すべての中小企業に最高の採用体験を届けることを約束します。開発の進捗はXでリアルタイムに発信しています。
+                        代表者自身、現在採用に苦労している経験から、「給与や知名度だけでは測れない会社の魅力を、どうすれば候補者に届けられるだろうか」と悩み続けてきました。<br><br>
+                        Enjobは、そんな原体験から生まれたサービスです。会社の価値観に共感する仲間と出会い、共に未来を創る。このプロダクトで、すべての中小企業に最高の採用体験を届けることを約束します。開発の進捗はXでリアルタイムに発信しています。
                     </p>
                 </div>
             </div>
@@ -301,7 +305,10 @@
 
     <script>
         document.querySelectorAll('.faq-item .question').forEach(item => {item.addEventListener('click', () => item.parentElement.classList.toggle('open'));});
-        document.querySelectorAll('a[href="#cta-final"]').forEach(b => b.addEventListener('click', () => gtag('event','pre_registration_scroll')));
+        document.querySelectorAll('a[href="#cta-final"]').forEach(b => b.addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({'event': 'pre_registration_scroll'});
+        }));
         
         const allCandidates = [
             { name: 'K. Sato', title: 'Frontend Engineer', imageUrl: './img/frontend_enginner.png', matchPercent: 85, salary: '650万円', values: ['ユーザー中心設計', '自律的に動く'], skills: ['Vue.js', 'TypeScript', 'Figma']},
@@ -437,5 +444,3 @@
     </script>
 </body>
 </html>
-
-
